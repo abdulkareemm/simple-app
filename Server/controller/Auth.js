@@ -32,10 +32,16 @@ exports.Signin = async (req, res, next) => {
     const result = await bcrypt.compare(req.body.password, user.password);
     return result
       ? res.status(200).json({
-          user: _.omit(user.toObject(), ["createdAt", "updatedAt", "password","isAdmin"]),
+          user: _.omit(user.toObject(), [
+            "createdAt",
+            "updatedAt",
+            "password",
+            "isAdmin",
+          ]),
         })
       : res.status(404).json({ msg: "password is wrong " });
   } catch (err) {
     return res.status(404).json({ msg: "There is wrong!,check all input" });
   }
 };
+
