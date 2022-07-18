@@ -5,8 +5,8 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 dotenv.config();
 
-const userRout = require("./routes/User");
 const authRout = require("./routes/Auth");
+const userRout = require("./routes/User");
 
 const app = express();
 
@@ -19,6 +19,7 @@ app.use(helmet());
 app.use(morgan("common"));
 
 app.use("/api/auth/", authRout);
+app.use("/api/users/", userRout);
 
 app.listen(process.env.PORT || 8080, () => {
   console.log(`running on port ${process.env.PORT}`);
